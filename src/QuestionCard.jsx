@@ -18,7 +18,7 @@ import React from 'react'
 // }
 
 
-const QuestionCard = ({q,changeQuestionCard}) => {
+const QuestionCard = ({q,changeQuestionCard, deleteQuestionCard}) => {
 
   
   function handleChange(e){
@@ -28,12 +28,16 @@ const QuestionCard = ({q,changeQuestionCard}) => {
 
   }
 
+  function deleteQ(){
+    deleteQuestionCard(q.id)
+  }
+
   return (
     <>
     <section className="questionCard">
 
       
-      <div><h1>Question id:{q.id}</h1> </div>
+      <div><h1>Question id:{q.id} <span class="deleteQbtn" onClick={deleteQ}>❌delete</span></h1> </div>
       {/* <p>question</p> */}
       <input type="text" name="question" placeholder='question' value={q.question?q.question:""} onChange={handleChange}/>
 

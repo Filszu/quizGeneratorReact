@@ -64,8 +64,34 @@ a{
   margin: 20px auto;
   color: rgba(255, 255, 0, 0.867);
   width:100% !important;
-  overflow-x: scroll;
+  overflow-x:auto;
   
+}
+
+.deleteQbtn{
+  font-size: 0.8rem;
+  opacity: 0.7;
+  cursor: pointer;
+  transition: all ease-in-out 0.1s;
+}
+
+.deleteQbtn:hover{
+  font-size: 1rem;
+  opacity:1;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+ 
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgb(74, 4, 104);
+}
+ 
+::-webkit-scrollbar-thumb {
+  background-color: rgb(159, 39, 202);
+
 }
 
 @keyframes slideIn {
@@ -78,5 +104,4 @@ a{
     transform: translateY(0px)
   }
 }
-
 

@@ -1,5 +1,4 @@
 // import logo from './logo.svg';
-import './App.css';
 import QuestionsList from './QuestionsList';
 import {useState,useEffect} from 'react';
 import NewCardButton from './NewCardButton';
@@ -49,6 +48,14 @@ const q2 =
 //     "correctAnswer": 1
   
 // }
+
+
+function saveToLocalStorage(data_obj, name){
+  
+  // 'autoSave'
+  const resultJSON = JSON.stringify(data_obj);
+  localStorage.setItem(name, resultJSON);
+}
 
 
 
@@ -135,6 +142,18 @@ function App() {
 
   }
 
+  function deleteQuestionCard(id){
+    console.log(`deleted card id: ${id}`)
+    const newQList = [...questions];
+    const editedQuestion = newQList.filter(question => question.id !== id);
+
+
+    console.log(editedQuestion)
+    setQuestions(editedQuestion)
+    
+
+  }
+
   // -----------------
   function saveQuiz(){
     const resultJSON = JSON.stringify(questions);
@@ -146,10 +165,10 @@ function App() {
     <>
     <div className="container">
       <h1>Quizz genrator</h1>
-      <h2>For this <a href="https://github.com/Filszu/quizzApp_kotlin/" target="_blank">github poroject</a></h2>
+      <h2>For this <a href="https://github.com/Filszu/quizzApp_kotlin/" target="blank">github project</a></h2>
       {/* <QuestionCard q={q1}/>
       <QuestionCard q={q1}/> */}
-      <QuestionsList questions={questions} changeQuestionCard={changeQuestionCard}/>
+      <QuestionsList questions={questions} changeQuestionCard={changeQuestionCard} deleteQuestionCard={deleteQuestionCard}/>
       <NewCardButton onClick={genereteCard} text="add new question"/>
 
       <NewCardButton onClick={saveQuiz} text="Generate JSON"/>
