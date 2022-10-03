@@ -80,8 +80,11 @@ function App() {
       
 
       const dataFromLocalStorage = JSON.parse(localStorage.getItem('autoSave'))
+
       console.log(dataFromLocalStorage)
-      setQuestions([dataFromLocalStorage])
+      setQuestions(dataFromLocalStorage)
+      console.log('questions after loadd to question state')
+      console.log(questions)
     }
     else{
       console.log("new user")
@@ -218,6 +221,7 @@ function App() {
 
     console.log("\nordered questions")
     console.log(orderedQuestions)
+    saveToLocalStorage(orderedQuestions, "autoSave");
 
     // setQuestions(orderedQuestions);
   }
