@@ -66,11 +66,36 @@ function App() {
   
 
   useEffect(() =>{
-    setQuestions([]) // xddd nie wiem czemu bez tego state przechowuje dalej wartosci
-    addNewCard(q1)
-    // addNewCard(q2)
+    console.log("\n================================")
+   
+    newQuiz();
+    // checkTheLocalStorage();
   },[]);
 
+  function checkTheLocalStorage(){
+    if(localStorage.getItem('autoSave')){
+      
+      console.log('data in localStorage founded successfully')
+      
+
+      const dataFromLocalStorage = JSON.parse(localStorage.getItem('autoSave'))
+      console.log(dataFromLocalStorage)
+      setQuestions([dataFromLocalStorage])
+    }
+    else{
+      console.log("new user")
+      newQuiz();
+    }
+  }
+
+  function newQuiz(){
+     // xddd nie wiem czemu bez tego state przechowuje dalej wartosci
+     setQuestions([])
+     localStorage.clear();
+    addNewCard(q1)
+    // addNewCard(q2)
+    
+  }
   function addNewCard(card){
 
     // setQuestions([card])
@@ -140,6 +165,10 @@ function App() {
     setQuestions(newQList)
     // setQuestions(editedQuestion)
 
+    // after change autosave to localStorage
+    // saveToLocalStorage(newQList, "autoSave");
+
+
   }
 
   function deleteQuestionCard(id){
@@ -150,6 +179,10 @@ function App() {
 
     console.log(editedQuestion)
     setQuestions(editedQuestion)
+    console.log(questions.length)
+    if(questions.length <=1){
+      addNewCard(q1)
+    }
     
 
   }
@@ -173,6 +206,8 @@ function App() {
 
       <NewCardButton onClick={saveQuiz} text="Generate JSON"/>
       <div className="resultArea">{result}</div>
+
+      <NewCardButton onClick={newQuiz} text="New QUIZ"/>
     </div>
 
       

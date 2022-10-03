@@ -37,7 +37,7 @@ const QuestionCard = ({q,changeQuestionCard, deleteQuestionCard}) => {
     <section className="questionCard">
 
       
-      <div><h1>Question id:{q.id} <span class="deleteQbtn" onClick={deleteQ}>❌delete</span></h1> </div>
+      <div><h1>Question id:{q.id} <span className="deleteQbtn" onClick={deleteQ}>❌delete</span></h1> </div>
       {/* <p>question</p> */}
       <input type="text" name="question" placeholder='question' value={q.question?q.question:""} onChange={handleChange}/>
 
