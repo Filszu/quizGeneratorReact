@@ -68,13 +68,14 @@ function App() {
   useEffect(() =>{
     console.log("\n================================")
    
-    newQuiz();
-    // checkTheLocalStorage();
+    // newQuiz();
+    checkTheLocalStorage();
   },[]);
 
   function checkTheLocalStorage(){
     if(localStorage.getItem('autoSave')){
       
+      setQuestions([])
       console.log('data in localStorage founded successfully')
       
 
@@ -166,7 +167,7 @@ function App() {
     // setQuestions(editedQuestion)
 
     // after change autosave to localStorage
-    // saveToLocalStorage(newQList, "autoSave");
+    saveToLocalStorage(newQList, "autoSave");
 
 
   }
@@ -189,8 +190,36 @@ function App() {
 
   // -----------------
   function saveQuiz(){
+    orderCards();
     const resultJSON = JSON.stringify(questions);
     setResult(resultJSON)
+  }
+
+  function orderCards(){
+    const prevQ= [...questions];
+    let newId=0;
+    // const orderedQuestions = prevQ.map((card)=>{
+    //   card.id=newId;
+    //   newId++;
+    // })
+
+    // const orderedQuestions = prevQ.forEach((question)=>{
+    //   question.id=newId;
+    //   newId++;
+    // })
+
+    // const orderedQuestions = 
+    for(const q of prevQ){
+      q.id=newId;
+      newId++;
+    }
+
+    const orderedQuestions = prevQ;
+
+    console.log("\nordered questions")
+    console.log(orderedQuestions)
+
+    // setQuestions(orderedQuestions);
   }
 
   return (
